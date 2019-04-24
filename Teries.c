@@ -9,7 +9,7 @@
 #define Frame_hight 20
 #define Frame_width 18
 
-int i,j, temp, temp1, temp2; //Èý¸öÖÐ¼äÖµ·Ö±ð¼Ç×¡ºÍ×ª»»·½¿é±äÁ¿µÄÖµ
+int i,j, temp, temp1, temp2; //ä¸‰ä¸ªä¸­é—´å€¼åˆ†åˆ«è®°ä½å’Œè½¬æ¢æ–¹å—å˜é‡çš„å€¼
 
 int a[80][80] = {0};
 int clean = 0;
@@ -26,35 +26,35 @@ typedef struct Teries
     int sorce;
     int max;
 } node;
-HANDLE hOut;//¿ØÖÆÌ¨¾ä±ú
+HANDLE hOut;//æŽ§åˆ¶å°å¥æŸ„
 
 int color(int c);//
-void gotoxy(int x, int y);//ÒÆ¶¯¹â±êµ½Ö¸¶¨Î»ÖÃ
-void DrawGameframe();//»æÖÆÓÎÏ·ñÑ¿ò
-void Flag(struct Teries* s);//Ëæ»ú²úÉú·½¿éÀàÐÍÐòºÅ
-void MakeTeries(struct Teries*);//²úÉú¶íÂÞË¹·½¿é
-void PrintTeries(struct Teries*);//´òÓ¡¶íÂÞË¹·½¿é
-void CleanTeries(struct Teries*);//Ïû³ý¶íÂÞË¹·½¿éµÄºÛ¼£
-int ifMove(struct Teries*);//ÅÐ¶ÏÊÇ·ñÒÆ¶¯£¬·µ»ØÖµÎª1Ê±ÒÆ¶¯£¬·ñÔò²»ÒÆ¶¯
-void Del_Fullline(struct Teries*);//ÅÐ¶ÏÊÇ·ñÂúÐÐ£¬²¢É¾³ýÂúÐÐµÄ¶íÂÞË¹·½¿é
-void Gameplay();//¿ªÊ¼ÓÎÏ·
-void regulation();//ÓÎÏ·¹æÔò
-void explation();//°´¼üËµÃ÷
-void welcom();//»¶Ó­½çÃæ
-void Reply(struct Teries *teries);//ÖØÐÂ¿ªÊ¼ÓÎÏ·
-void title();//»¶Ó­½çÃæÉÏ·½±êÌâ
-void flower();//»¶Ó­½çÃæ×Ö·û×°ÊÎ
-void close();//¹Ø±ÕÓÎÏ·
+void gotoxy(int x, int y);//ç§»åŠ¨å…‰æ ‡åˆ°æŒ‡å®šä½ç½®
+void DrawGameframe();//ç»˜åˆ¶æ¸¸æˆè£±æ¡†
+void Flag(struct Teries* s);//éšæœºäº§ç”Ÿæ–¹å—ç±»åž‹åºå·
+void MakeTeries(struct Teries*);//äº§ç”Ÿä¿„ç½—æ–¯æ–¹å—
+void PrintTeries(struct Teries*);//æ‰“å°ä¿„ç½—æ–¯æ–¹å—
+void CleanTeries(struct Teries*);//æ¶ˆé™¤ä¿„ç½—æ–¯æ–¹å—çš„ç—•è¿¹
+int ifMove(struct Teries*);//åˆ¤æ–­æ˜¯å¦ç§»åŠ¨ï¼Œè¿”å›žå€¼ä¸º1æ—¶ç§»åŠ¨ï¼Œå¦åˆ™ä¸ç§»åŠ¨
+void Del_Fullline(struct Teries*);//åˆ¤æ–­æ˜¯å¦æ»¡è¡Œï¼Œå¹¶åˆ é™¤æ»¡è¡Œçš„ä¿„ç½—æ–¯æ–¹å—
+void Gameplay();//å¼€å§‹æ¸¸æˆ
+void regulation();//æ¸¸æˆè§„åˆ™
+void explation();//æŒ‰é”®è¯´æ˜Ž
+void welcom();//æ¬¢è¿Žç•Œé¢
+void Reply(struct Teries *teries);//é‡æ–°å¼€å§‹æ¸¸æˆ
+void title();//æ¬¢è¿Žç•Œé¢ä¸Šæ–¹æ ‡é¢˜
+void flower();//æ¬¢è¿Žç•Œé¢å­—ç¬¦è£…é¥°
+void close();//å…³é—­æ¸¸æˆ
 
 
 
-int color(int c)//ÉèÖÃÎÄ×ÖµÄÑÕÉ«
+int color(int c)//è®¾ç½®æ–‡å­—çš„é¢œè‰²
 {
     SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), c);
     return 0;
 }
 
-void gotoxy(int x, int y)//ÉèÖÃÎÄ×ÖÏÔÊ¾Î»ÖÃ
+void gotoxy(int x, int y)//è®¾ç½®æ–‡å­—æ˜¾ç¤ºä½ç½®
 {
     COORD pos;
     pos.X = x;
@@ -62,49 +62,49 @@ void gotoxy(int x, int y)//ÉèÖÃÎÄ×ÖÏÔÊ¾Î»ÖÃ
     SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), pos);
 }
 
-void title()//Éè¼Æ±êÌâ²¿·Ö
+void title()//è®¾è®¡æ ‡é¢˜éƒ¨åˆ†
 {
     color(15);
     gotoxy(24,3);
-    printf("È¤  Î¶  ¶í  ÂÞ  Ë¹  ·½  ¿é\n");
+    printf("è¶£  å‘³  ä¿„  ç½—  æ–¯  æ–¹  å—\n");
     color(11);
     gotoxy(18,5);
-    printf("¨€");
+    printf("â–ˆ");
     gotoxy(18,6);
-    printf("¨€¨€");
+    printf("â–ˆâ–ˆ");
     gotoxy(18,7);
-    printf("¨€");
+    printf("â–ˆ");
 
     color(14);
     gotoxy(26,6);
-    printf("¨€¨€");
+    printf("â–ˆâ–ˆ");
     gotoxy(28,7);
-    printf("¨€¨€");
+    printf("â–ˆâ–ˆ");
 
     color(10);
     gotoxy(36,6);
-    printf("¨€¨€");
+    printf("â–ˆâ–ˆ");
     gotoxy(36,7);
-    printf("¨€¨€");
+    printf("â–ˆâ–ˆ");
 
     color(13);
     gotoxy(45,5);
-    printf("¨€");
+    printf("â–ˆ");
     gotoxy(45,6);
-    printf("¨€");
+    printf("â–ˆ");
     gotoxy(45,7);
-    printf("¨€");
+    printf("â–ˆ");
     gotoxy(45,8);
-    printf("¨€");
+    printf("â–ˆ");
 
     color(12);
     gotoxy(56,6);
-    printf("¨€");
+    printf("â–ˆ");
     gotoxy(54,7);
-    printf("¨€¨€¨€");
+    printf("â–ˆâ–ˆâ–ˆ");
 }
 
-void flower()//ÉèÖÃ×Ö·û×°ÊÎ
+void flower()//è®¾ç½®å­—ç¬¦è£…é¥°
 {
     gotoxy(66,11);
     color(12);
@@ -170,10 +170,10 @@ void flower()//ÉèÖÃ×Ö·û×°ÊÎ
     printf("^^^^^^");
 
     gotoxy(68,20);
-    printf("Áõ½ðê»");
+    printf("hello world");
 }
 
-void welcom()//Éè¼Æ²Ëµ¥Ñ¡Ïî±ß¿ò
+void welcom()//è®¾è®¡èœå•é€‰é¡¹è¾¹æ¡†
 {
     int i, j = 1;
     color(14);
@@ -189,78 +189,78 @@ void welcom()//Éè¼Æ²Ëµ¥Ñ¡Ïî±ß¿ò
         }
     }
     /*
-    Éè¼Æ²Ëµ¥Ñ¡ÏîÖÐµÄÎÄ×Ö
+    è®¾è®¡èœå•é€‰é¡¹ä¸­çš„æ–‡å­—
     */
     int n;
     color(12);
     gotoxy(25,12);
-    printf("1. ¿ªÊ¼ÓÎÏ·");
+    printf("1. å¼€å§‹æ¸¸æˆ");
 
     gotoxy(40,12);
-    printf("2.°´¼üËµÃ÷");
+    printf("2.æŒ‰é”®è¯´æ˜Ž");
 
     gotoxy(25,17);
-    printf("3.ÓÎÏ·¹æÔò");
+    printf("3.æ¸¸æˆè§„åˆ™");
 
     gotoxy(40,17);
-    printf("4.ÍË³öÓÎÏ·");
+    printf("4.é€€å‡ºæ¸¸æˆ");
 
     gotoxy(21,22);
     color(3);
-    printf("ÇëÑ¡Ôñ[1 2 3 4]:[ ]\b\b");
+    printf("è¯·é€‰æ‹©[1 2 3 4]:[ ]\b\b");
     color(14);
     scanf("%d",&n);
     switch (n)
     {
     case 1:
-        system("cls");//ÇåÆÁº¯Êý
+        system("cls");//æ¸…å±å‡½æ•°
         DrawGameframe();
         Gameplay();
         break;
     case 2:
-        explation();      	//°´¼üËµÃ÷º¯Êý
+        explation();      	//æŒ‰é”®è¯´æ˜Žå‡½æ•°
         break;
     case 3:
-        regulation();     	//ÓÎÏ·¹æÔòº¯Êý
+        regulation();     	//æ¸¸æˆè§„åˆ™å‡½æ•°
         break;
     case 4:
-        close();    		//¹Ø±ÕÓÎÏ·º¯Êý
+        close();    		//å…³é—­æ¸¸æˆå‡½æ•°
         break;
     }
 }
 
-//ÓÎÏ·Ö÷Ìå´°¿ÚÉè¼Æ
-void DrawGameframe()//ÖÆ×÷ÓÎÏ·´°¿Ú
+//æ¸¸æˆä¸»ä½“çª—å£è®¾è®¡
+void DrawGameframe()//åˆ¶ä½œæ¸¸æˆçª—å£
 {
     gotoxy(Framex +Frame_width - 7, Framey - 2);
     color(11);
-    printf("È¤Î¶¶íÂÞË¹·½¿é");
+    printf("è¶£å‘³ä¿„ç½—æ–¯æ–¹å—");
     gotoxy(Framex + 2 * Frame_width + 3, Framey + 7);
     color(2);
     printf("***********");
     gotoxy(Framex +2 * Frame_width + 13, Framey + 7);
     color(3);
-    printf("ÏÂÒ»³öÏÖµÄ·½¿é£º ");
+    printf("ä¸‹ä¸€å‡ºçŽ°çš„æ–¹å—ï¼š ");
     gotoxy(Framex + 2 * Frame_width  + 3, Framey + 13);
     color(2);
     printf("**********");
     gotoxy(Framex + 2 * Frame_width + 3, Framey + 17);
     color(14);
-    printf("up¼ü£ºÐý×ª");
+    printf("upé”®ï¼šæ—‹è½¬");
     gotoxy(Framex + 2 * Frame_width + 3, Framey + 19);
-    printf("¿Õ¸ñ¼ü£ºÔÝÍ£");
+    printf("ç©ºæ ¼é”®ï¼šæš‚åœ");
     gotoxy(Framex + 2 * Frame_width + 3, Framey + 15);
-    printf("Esc£ºÍË³öÓÎÏ·");
+    printf("Escï¼šé€€å‡ºæ¸¸æˆ");
 
     gotoxy(Framex, Framey);
     color(12);
-    printf("¡¶ ");
+    printf("ã€Š ");
     gotoxy(Framex + 2 * Frame_width - 2, Framey);
-    printf("¡·");
+    printf("ã€‹");
     gotoxy(Framex, Framey + Frame_hight);
-    printf("¡¶");
+    printf("ã€Š");
     gotoxy(Framex+ 2 * Frame_width - 2, Framey + Frame_hight);
-    printf("¡·");
+    printf("ã€‹");
 
     a[Framex][Framey + Frame_hight] = -1;
     a[Framex+ 2 * Frame_width - 2][Framey + Frame_hight] = -1;
@@ -290,7 +290,7 @@ void DrawGameframe()//ÖÆ×÷ÓÎÏ·´°¿Ú
     }
 }
 
-//ÖÆ×÷¶íÂÞË¹·½¿é
+//åˆ¶ä½œä¿„ç½—æ–¯æ–¹å—
 void MakeTeries(struct Teries *teries)
 {
     if(clean)
@@ -303,7 +303,7 @@ void MakeTeries(struct Teries *teries)
     }
     switch(teries->flag)
     {
-    case 1://Ìï×Ö·½¿é
+    case 1://ç”°å­—æ–¹å—
     {
         if(clean)
         {
@@ -319,7 +319,7 @@ void MakeTeries(struct Teries *teries)
         }
         break;
     }
-    case 2://ºáÏßÖ±Ïß·½¿é
+    case 2://æ¨ªçº¿ç›´çº¿æ–¹å—
     {
         if(clean)
         {
@@ -335,7 +335,7 @@ void MakeTeries(struct Teries *teries)
         }
         break;
     }
-    case 3://ÊúÖ±Ö±Ïß·½¿é
+    case 3://ç«–ç›´ç›´çº¿æ–¹å—
     {
         if(clean)
         {
@@ -351,7 +351,7 @@ void MakeTeries(struct Teries *teries)
         }
         break;
     }
-    case 4://T×Ö·½¿é
+    case 4://Tå­—æ–¹å—
     {
         if(clean)
         {
@@ -368,7 +368,7 @@ void MakeTeries(struct Teries *teries)
 
         break;
     }
-    case 5://Ë³Ê±Õë90T×Ö·½¿é
+    case 5://é¡ºæ—¶é’ˆ90Tå­—æ–¹å—
     {
         if(clean)
         {
@@ -385,7 +385,7 @@ void MakeTeries(struct Teries *teries)
 
         break;
     }
-    case 6://Ë³Ê±Õë180T×Ö·½¿é
+    case 6://é¡ºæ—¶é’ˆ180Tå­—æ–¹å—
     {
         if(clean)
         {
@@ -402,7 +402,7 @@ void MakeTeries(struct Teries *teries)
 
         break;
     }
-    case 7://Ë³Ê±Õë270T×Ö·½¿é
+    case 7://é¡ºæ—¶é’ˆ270Tå­—æ–¹å—
     {
         if(clean)
         {
@@ -419,7 +419,7 @@ void MakeTeries(struct Teries *teries)
 
         break;
     }
-    case 8://z×Ö·½¿é
+    case 8://zå­—æ–¹å—
     {
         if(clean)
         {
@@ -436,7 +436,7 @@ void MakeTeries(struct Teries *teries)
 
         break;
     }
-    case 9://Ë³Ê±ÕëZ×Ö
+    case 9://é¡ºæ—¶é’ˆZå­—
     {
         if(clean)
         {
@@ -453,7 +453,7 @@ void MakeTeries(struct Teries *teries)
 
         break;
     }
-    case 10://·´Z×Ö
+    case 10://åZå­—
     {
         if(clean)
         {
@@ -470,7 +470,7 @@ void MakeTeries(struct Teries *teries)
 
         break;
     }
-    case 11://Ë³Ê±Õë·´Z×Ö
+    case 11://é¡ºæ—¶é’ˆåZå­—
     {
         if(clean)
         {
@@ -626,7 +626,7 @@ void MakeTeries(struct Teries *teries)
     }
 }
 
-void PrintTeries(struct Teries* teries)//´òÓ¡·½¿é
+void PrintTeries(struct Teries* teries)//æ‰“å°æ–¹å—
 {
     clean =0;
     MakeTeries(teries);
@@ -638,7 +638,7 @@ void PrintTeries(struct Teries* teries)//´òÓ¡·½¿é
             {
                 gotoxy(i, j);
                 color(cl[a[i][j] -1]);
-                printf("¨€");
+                printf("â–ˆ");
             }
         }
     }
@@ -693,7 +693,7 @@ int ifMove(struct Teries* teries)
     return 0;
 }
 
-void CleanTeries(struct Teries* teries)//Çå³ýºÛ¼£
+void CleanTeries(struct Teries* teries)//æ¸…é™¤ç—•è¿¹
 {
     clean = 1;
     MakeTeries(teries);
@@ -710,7 +710,7 @@ void CleanTeries(struct Teries* teries)//Çå³ýºÛ¼£
     }
 }
 
-void Del_Fullline(struct Teries* teries)//ÅÐ¶ÏÊÇ·ñÂúÐÐ
+void Del_Fullline(struct Teries* teries)//åˆ¤æ–­æ˜¯å¦æ»¡è¡Œ
 {
     int k, del_rows = 0;
     for(j = Framey + Frame_hight - 1; j >= Framey+1; j --)
@@ -742,7 +742,7 @@ void Del_Fullline(struct Teries* teries)//ÅÐ¶ÏÊÇ·ñÂúÐÐ
                                 a[i][k+1] = ttt;
                                 gotoxy(i, k +1);
 								color(cl[a[i][k+1] - 1]);
-                                printf("¨€");
+                                printf("â–ˆ");
                             }
                         }
                     }
@@ -759,7 +759,7 @@ void Del_Fullline(struct Teries* teries)//ÅÐ¶ÏÊÇ·ñÂúÐÐ
     }
 }
 
-void Flag(struct Teries* teries)//Ëæ»ú²úÉú·½¿é
+void Flag(struct Teries* teries)//éšæœºäº§ç”Ÿæ–¹å—
 {
     teries->number ++;
     srand(time(NULL));
@@ -793,26 +793,26 @@ void Gameplay()
         teries->x = Framex + Frame_width;
         teries->y = Framey - 1;
         teries->flag = temp;
-        while(1)  										//¿ØÖÆ·½¿é·½Ïò£¬Ö±ÖÁ·½¿é²»ÔÙÏÂÒÆ
+        while(1)  										//æŽ§åˆ¶æ–¹å—æ–¹å‘ï¼Œç›´è‡³æ–¹å—ä¸å†ä¸‹ç§»
         {
 label:
-            PrintTeries(teries);					//´òÓ¡¶íÂÞË¹·½¿é
-            Sleep(teries->speed);   					//ÑÓ»ºÊ±¼ä
-            CleanTeries(teries);  						//Çå³ýºÛ¼£
-            temp1=teries->x;    						//¼Ç×¡ÖÐÐÄ·½¿éºá×ø±êµÄÖµ
-            temp2=teries->flag;    						//¼Ç×¡µ±Ç°¶íÂÞË¹·½¿éÐòºÅ
-            if(kbhit())       				  	 		//ÅÐ¶ÏÊÇ·ñÓÐ¼üÅÌÊäÈë£¬ÓÐÔòÓÃch¡ý½ÓÊÕ
+            PrintTeries(teries);					//æ‰“å°ä¿„ç½—æ–¯æ–¹å—
+            Sleep(teries->speed);   					//å»¶ç¼“æ—¶é—´
+            CleanTeries(teries);  						//æ¸…é™¤ç—•è¿¹
+            temp1=teries->x;    						//è®°ä½ä¸­å¿ƒæ–¹å—æ¨ªåæ ‡çš„å€¼
+            temp2=teries->flag;    						//è®°ä½å½“å‰ä¿„ç½—æ–¯æ–¹å—åºå·
+            if(kbhit())       				  	 		//åˆ¤æ–­æ˜¯å¦æœ‰é”®ç›˜è¾“å…¥ï¼Œæœ‰åˆ™ç”¨châ†“æŽ¥æ”¶
             {
                 ch=getch();
-                if(ch==75)     							//°´ ¡û¼üÔòÏò×ó¶¯£¬ÖÐÐÄºá×ø±ê¼õ2
+                if(ch==75)     							//æŒ‰ â†é”®åˆ™å‘å·¦åŠ¨ï¼Œä¸­å¿ƒæ¨ªåæ ‡å‡2
                 {
                     teries->x-=2;
                 }
-                if(ch==77)     							//°´ ¡ú¼üÔòÏòÓÒ¶¯£¬ÖÐÐÄºá×ø±ê¼Ó2
+                if(ch==77)     							//æŒ‰ â†’é”®åˆ™å‘å³åŠ¨ï¼Œä¸­å¿ƒæ¨ªåæ ‡åŠ 2
                 {
                     teries->x+=2;
                 }
-                if(ch==80)     							//°´ ¡ý¼üÔò¼ÓËÙÏÂÂä
+                if(ch==80)     							//æŒ‰ â†“é”®åˆ™åŠ é€Ÿä¸‹è½
                 {
                     if(ifMove(teries)!=0)
                     {
@@ -823,7 +823,7 @@ label:
                         teries->y=Framey+Frame_hight-2;
                     }
                 }
-                if(ch==72)     						//°´ ¡ü¼üÔò±äÌå,¼´µ±Ç°·½¿éË³Ê±Õë×ª90¶È
+                if(ch==72)     						//æŒ‰ â†‘é”®åˆ™å˜ä½“,å³å½“å‰æ–¹å—é¡ºæ—¶é’ˆè½¬90åº¦
                 {
                     if( teries->flag>=2 && teries->flag<=3 )
                     {
@@ -856,12 +856,12 @@ label:
                         teries->flag+=16;
                     }
                 }
-                if(ch == 32)     					//°´¿Õ¸ñ¼ü£¬ÔÝÍ£
+                if(ch == 32)     					//æŒ‰ç©ºæ ¼é”®ï¼Œæš‚åœ
                 {
                     PrintTeries(teries);
                     while(1)
                     {
-                        if(kbhit())   			//ÔÙ°´¿Õ¸ñ¼ü£¬¼ÌÐøÓÎÏ·
+                        if(kbhit())   			//å†æŒ‰ç©ºæ ¼é”®ï¼Œç»§ç»­æ¸¸æˆ
                         {
                             ch=getch();
                             if(ch == 32)
@@ -874,21 +874,21 @@ label:
                 if(ch == 27)
                 {
                     system("cls");
-                    memset(a,0,6400*sizeof(int));       //³õÊ¼»¯BOXÊý×é
+                    memset(a,0,6400*sizeof(int));       //åˆå§‹åŒ–BOXæ•°ç»„
                     welcom();
                 }
-                if(ifMove(teries)==0) 			//Èç¹û²»¿É¶¯£¬ÉÏÃæ²Ù×÷ÎÞÐ§
+                if(ifMove(teries)==0) 			//å¦‚æžœä¸å¯åŠ¨ï¼Œä¸Šé¢æ“ä½œæ— æ•ˆ
                 {
                     teries->x=temp1;
                     teries->flag=temp2;
                 }
-                else      						//Èç¹û¿É¶¯£¬Ö´ÐÐ²Ù×÷
+                else      						//å¦‚æžœå¯åŠ¨ï¼Œæ‰§è¡Œæ“ä½œ
                 {
                     goto label;
                 }
             }
-            teries->y++;     					//Èç¹ûÃ»ÓÐ²Ù×÷Ö¸Áî£¬·½¿éÏòÏÂÒÆ¶¯
-            if(ifMove(teries)==0)  				//Èç¹ûÏòÏÂÒÆ¶¯ÇÒ²»¿É¶¯£¬·½¿é·ÅÔÚ´Ë´¦
+            teries->y++;     					//å¦‚æžœæ²¡æœ‰æ“ä½œæŒ‡ä»¤ï¼Œæ–¹å—å‘ä¸‹ç§»åŠ¨
+            if(ifMove(teries)==0)  				//å¦‚æžœå‘ä¸‹ç§»åŠ¨ä¸”ä¸å¯åŠ¨ï¼Œæ–¹å—æ”¾åœ¨æ­¤å¤„
             {
                 teries->y--;
                 PrintTeries(teries);
@@ -896,7 +896,7 @@ label:
                 break;
             }
         }
-        for(i=teries->y-2; i<teries->y+2; i++)	//ÓÎÏ·½áÊøÌõ¼þ£º·½¿é´¥µ½¿ò¶¥Î»ÖÃ
+        for(i=teries->y-2; i<teries->y+2; i++)	//æ¸¸æˆç»“æŸæ¡ä»¶ï¼šæ–¹å—è§¦åˆ°æ¡†é¡¶ä½ç½®
         {
             if(i==Framey)
             {
@@ -904,26 +904,26 @@ label:
                 gotoxy(29,7);
                 printf("   \n");
                 color(12);
-                printf("\t\t\t¡ö¡ö¡ö¡ö   ¡ö     ¡ö   ¡ö¡ö     \n");
-                printf("\t\t\t¡ö         ¡ö¡ö   ¡ö   ¡ö  ¡ö   \n");
-                printf("\t\t\t¡ö¡ö¡ö     ¡ö  ¡ö ¡ö   ¡ö   ¡ö  \n");
-                printf("\t\t\t¡ö         ¡ö   ¡ö¡ö   ¡ö  ¡ö   \n");
-                printf("\t\t\t¡ö¡ö¡ö¡ö   ¡ö     ¡ö   ¡ö¡ö     \n");
+                printf("\t\t\tâ– â– â– â–    â–      â–    â– â–      \n");
+                printf("\t\t\tâ–          â– â–    â–    â–   â–    \n");
+                printf("\t\t\tâ– â– â–      â–   â–  â–    â–    â–   \n");
+                printf("\t\t\tâ–          â–    â– â–    â–   â–    \n");
+                printf("\t\t\tâ– â– â– â–    â–      â–    â– â–      \n");
                 gotoxy(17,18);
                 color(14);
-                printf("ÎÒÒªÖØÐÂÍæÒ»¾Ö-------1");
+                printf("æˆ‘è¦é‡æ–°çŽ©ä¸€å±€-------1");
                 gotoxy(44,18);
-                printf("²»ÍæÁË£¬ÍË³ö°É-------2\n");
+                printf("ä¸çŽ©äº†ï¼Œé€€å‡ºå§-------2\n");
                 int n;
                 gotoxy(32,20);
-                printf("Ñ¡Ôñ¡¾1/2¡¿£º");
+                printf("é€‰æ‹©ã€1/2ã€‘ï¼š");
                 color(11);
                 scanf("%d", &n);
                 switch (n)
                 {
                 case 1:
                     system("cls");
-                    Replay(teries);       	//ÖØÐÂ¿ªÊ¼ÓÎÏ·
+                    Replay(teries);       	//é‡æ–°å¼€å§‹æ¸¸æˆ
                     break;
                 case 2:
                     exit(0);
@@ -931,7 +931,7 @@ label:
                 }
             }
         }
-        teries->flag = teries->next;  			//Çå³ýÏÂÒ»¸ö¶íÂÞË¹·½¿éµÄÍ¼ÐÎ(ÓÒ±ß´°¿Ú)
+        teries->flag = teries->next;  			//æ¸…é™¤ä¸‹ä¸€ä¸ªä¿„ç½—æ–¯æ–¹å—çš„å›¾å½¢(å³è¾¹çª—å£)
         teries->x=Framex+2*Frame_width+6;
         teries->y=Framey+10;
         CleanTeries(teries);
@@ -945,7 +945,7 @@ void close()
 }
 
 /**
-* °´¼üËµÃ÷
+* æŒ‰é”®è¯´æ˜Ž
 */
 void explation()
 {
@@ -953,11 +953,11 @@ void explation()
     system("cls");
     color(13);
     gotoxy(32,3);
-    printf("°´¼üËµÃ÷");
+    printf("æŒ‰é”®è¯´æ˜Ž");
     color(2);
-    for (i = 6; i <= 16; i++)   //Êä³öÉÏÏÂ±ß¿ò===
+    for (i = 6; i <= 16; i++)   //è¾“å‡ºä¸Šä¸‹è¾¹æ¡†===
     {
-        for (j = 15; j <= 60; j++)  //Êä³ö×óÓÒ±ß¿ò||
+        for (j = 15; j <= 60; j++)  //è¾“å‡ºå·¦å³è¾¹æ¡†||
         {
             gotoxy(j, i);
             if (i == 6 || i == 16) printf("=");
@@ -966,26 +966,26 @@ void explation()
     }
     color(3);
     gotoxy(18,7);
-    printf("tip1: Íæ¼Ò¿ÉÒÔÍ¨¹ý ¡û ¡ú·½Ïò¼üÀ´ÒÆ¶¯·½¿é");
+    printf("tip1: çŽ©å®¶å¯ä»¥é€šè¿‡ â† â†’æ–¹å‘é”®æ¥ç§»åŠ¨æ–¹å—");
     color(10);
     gotoxy(18,9);
-    printf("tip2: Í¨¹ý ¡üÊ¹·½¿éÐý×ª");
+    printf("tip2: é€šè¿‡ â†‘ä½¿æ–¹å—æ—‹è½¬");
     color(14);
     gotoxy(18,11);
-    printf("tip3: Í¨¹ý ¡ý¼ÓËÙ·½¿éÏÂÂä");
+    printf("tip3: é€šè¿‡ â†“åŠ é€Ÿæ–¹å—ä¸‹è½");
     color(11);
     gotoxy(18,13);
-    printf("tip4: °´¿Õ¸ñ¼üÔÝÍ£ÓÎÏ·£¬ÔÙ°´¿Õ¸ñ¼ü¼ÌÐø");
+    printf("tip4: æŒ‰ç©ºæ ¼é”®æš‚åœæ¸¸æˆï¼Œå†æŒ‰ç©ºæ ¼é”®ç»§ç»­");
     color(4);
     gotoxy(18,15);
-    printf("tip5: °´ESCÍË³öÓÎÏ·");
-    getch();                //°´ÈÎÒâ¼ü·µ»ØÖ÷½çÃæ
+    printf("tip5: æŒ‰ESCé€€å‡ºæ¸¸æˆ");
+    getch();                //æŒ‰ä»»æ„é”®è¿”å›žä¸»ç•Œé¢
     system("cls");
     main();
 }
 
 /**
-* ÓÎÏ·¹æÔò
+* æ¸¸æˆè§„åˆ™
 */
 void regulation()
 {
@@ -993,11 +993,11 @@ void regulation()
     system("cls");
     color(13);
     gotoxy(34,3);
-    printf("ÓÎÏ·¹æÔò");
+    printf("æ¸¸æˆè§„åˆ™");
     color(2);
-    for (i = 6; i <= 18; i++)   //Êä³öÉÏÏÂ±ß¿ò===
+    for (i = 6; i <= 18; i++)   //è¾“å‡ºä¸Šä¸‹è¾¹æ¡†===
     {
-        for (j = 12; j <= 70; j++)  //Êä³ö×óÓÒ±ß¿ò||
+        for (j = 12; j <= 70; j++)  //è¾“å‡ºå·¦å³è¾¹æ¡†||
         {
             gotoxy(j, i);
             if (i == 6 || i == 18) printf("=");
@@ -1006,31 +1006,31 @@ void regulation()
     }
     color(12);
     gotoxy(16,7);
-    printf("tip1: ²»Í¬ÐÎ×´µÄÐ¡·½¿é´ÓÆÁÄ»ÉÏ·½ÂäÏÂ£¬Íæ¼ÒÍ¨¹ýµ÷Õû");
+    printf("tip1: ä¸åŒå½¢çŠ¶çš„å°æ–¹å—ä»Žå±å¹•ä¸Šæ–¹è½ä¸‹ï¼ŒçŽ©å®¶é€šè¿‡è°ƒæ•´");
     gotoxy(22,9);
-    printf("·½¿éµÄÎ»ÖÃºÍ·½Ïò£¬Ê¹ËûÃÇÔÚÆÁÄ»µ×²¿Æ´³öÍêÕûµÄ");
+    printf("æ–¹å—çš„ä½ç½®å’Œæ–¹å‘ï¼Œä½¿ä»–ä»¬åœ¨å±å¹•åº•éƒ¨æ‹¼å‡ºå®Œæ•´çš„");
     gotoxy(22,11);
-    printf("Ò»Ìõ»ò¼¸Ìõ");
+    printf("ä¸€æ¡æˆ–å‡ æ¡");
     color(14);
     gotoxy(16,13);
-    printf("tip2: Ã¿Ïû³ýÒ»ÐÐ£¬»ý·ÖÔö¼Ó100");
+    printf("tip2: æ¯æ¶ˆé™¤ä¸€è¡Œï¼Œç§¯åˆ†å¢žåŠ 100");
     color(11);
     gotoxy(16,15);
-    printf("tip3: Ã¿ÀÛ¼Æ1000·Ö£¬»áÌáÉýÒ»¸öµÈ¼¶");
+    printf("tip3: æ¯ç´¯è®¡1000åˆ†ï¼Œä¼šæå‡ä¸€ä¸ªç­‰çº§");
     color(10);
     gotoxy(16,17);
-    printf("tip4: ÌáÉýµÈ¼¶»áÊ¹·½¿éÏÂÂäËÙ¶È¼Ó¿ì£¬ÓÎÏ·ÄÑ¶È¼Ó´ó");
-    getch();                //°´ÈÎÒâ¼ü·µ»ØÖ÷½çÃæ
+    printf("tip4: æå‡ç­‰çº§ä¼šä½¿æ–¹å—ä¸‹è½é€Ÿåº¦åŠ å¿«ï¼Œæ¸¸æˆéš¾åº¦åŠ å¤§");
+    getch();                //æŒ‰ä»»æ„é”®è¿”å›žä¸»ç•Œé¢
     system("cls");
     welcom();
 }
 
 void Replay(struct Tetris *teries)
 {
-    system("cls");                  	//ÇåÆÁ
-    memset(a,0,6400*sizeof(int));       //³õÊ¼»¯BOXÊý×é£¬·ñÔò²»»áÕý³£ÏÔÊ¾·½¿é£¬µ¼ÖÂÓÎÏ·Ö±½Ó½áÊø
-    DrawGameframe();       	//ÖÆ×÷ÓÎÏ·´°¿Ú
-    Gameplay(); 			//¿ªÊ¼ÓÎÏ·
+    system("cls");                  	//æ¸…å±
+    memset(a,0,6400*sizeof(int));       //åˆå§‹åŒ–BOXæ•°ç»„ï¼Œå¦åˆ™ä¸ä¼šæ­£å¸¸æ˜¾ç¤ºæ–¹å—ï¼Œå¯¼è‡´æ¸¸æˆç›´æŽ¥ç»“æŸ
+    DrawGameframe();       	//åˆ¶ä½œæ¸¸æˆçª—å£
+    Gameplay(); 			//å¼€å§‹æ¸¸æˆ
 }
 
 int main()
